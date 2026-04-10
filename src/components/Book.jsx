@@ -4,42 +4,44 @@ function Book({ book }) {
   const { bookId, bookName, author, image, rating, category, tags } = book;
   return (
     <Link to={`/all-books/${bookId}`}>
-      <div className="flex flex-col h-full w-full p-6 rounded-2xl border border-gray-200 bg-white shadow-sm font-sans cursor-pointer">
-        <div className="flex justify-center bg-gray-100 rounded-xl py-8 mb-6">
+      <div className="flex flex-col h-full w-full p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-2xl border border-gray-200 bg-white shadow-sm font-sans cursor-pointer hover:shadow-md transition-shadow">
+        <div className="flex justify-center bg-gray-100 rounded-lg sm:rounded-xl py-4 sm:py-8 mb-4 sm:mb-6">
           <img
             src={image}
             alt={bookName}
-            className="shadow-lg h-[220px] object-cover"
+            className="shadow-lg h-32 sm:h-44 lg:h-[220px] object-cover"
           />
         </div>
 
-        <div className="flex gap-3 mb-4">
+        <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-4">
           {tags.map((tag, index) => (
             <span
               key={index}
-              className="bg-[#F4FBF2] text-[#23B028] px-4 py-1.5 rounded-full text-sm font-semibold"
+              className="bg-[#F4FBF2] text-[#23B028] px-2 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <h2 className="text-3xl font-bold font-serif text-gray-900 mb-3 tracking-tight">
+        <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold font-serif text-gray-900 mb-2 sm:mb-3 tracking-tight line-clamp-2">
           {bookName}
         </h2>
 
-        <p className="text-gray-500 font-medium mb-5">{author}</p>
+        <p className="text-sm sm:text-base text-gray-500 font-medium mb-3 sm:mb-5">
+          {author}
+        </p>
 
-        <hr className="border-t border-dashed border-gray-300 mt-auto mb-5" />
+        <hr className="border-t border-dashed border-gray-300 mt-auto mb-3 sm:mb-5" />
 
-        <div className="flex justify-between items-center text-gray-500 font-medium text-lg">
-          <span>{category}</span>
+        <div className="flex justify-between items-center text-gray-500 font-medium text-sm sm:text-base lg:text-lg">
+          <span className="truncate">{category}</span>
 
-          <div className="flex items-center gap-1 text-gray-800">
-            <span>{rating}</span>\
+          <div className="flex items-center gap-1 text-gray-800 flex-shrink-0">
+            <span>{rating}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-800"
+              className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-gray-800"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
