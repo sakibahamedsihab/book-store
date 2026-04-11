@@ -1,8 +1,10 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { saveReadBook, saveWishlistedBooks } from "../utils/localStorage";
+import { BookContext } from "../context/BookContext";
+import { useContext } from "react";
 
 const BookDetails = () => {
+  const { handleMarkAsRead, handleWishList } = useContext(BookContext);
   const singleBook = useLoaderData();
   if (!singleBook) {
     return (
@@ -94,13 +96,13 @@ const BookDetails = () => {
 
           <div className="flex gap-4">
             <button
-              onClick={() => saveReadBook(singleBook.bookId)}
+              onClick={() => handleMarkAsRead(singleBook)}
               className="px-8 py-3 rounded-lg border border-gray-300 font-semibold text-gray-900 hover:bg-gray-50 transition-colors"
             >
               Read
             </button>
             <button
-              onClick={() => saveWishlistedBooks(singleBook.bookId)}
+              onClick={() => handleWishList(singleBook)}
               className="px-8 py-3 rounded-lg bg-[#50B1C9] font-semibold text-white hover:bg-[#3d96ac] transition-colors shadow-sm"
             >
               Wishlist

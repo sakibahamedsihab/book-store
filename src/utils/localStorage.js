@@ -6,13 +6,15 @@ export const getStoredReadBooks = () => {
   return [];
 };
 
-export const saveReadBook = (bookId) => {
+export const saveReadBook = (book) => {
   const storedbooks = getStoredReadBooks();
 
-  const exist = storedbooks.find((id) => id === bookId);
+  const exist = storedbooks.find(
+    (storeBook) => storeBook.bookId === book.bookId,
+  );
 
   if (!exist) {
-    storedbooks.push(bookId);
+    storedbooks.push(book);
     localStorage.setItem("read-books", JSON.stringify(storedbooks));
     alert("Books added successfully");
   } else alert("You have already added this book");
@@ -27,22 +29,26 @@ export const getWishlistedBooks = () => {
   }
 };
 
-export const saveWishlistedBooks = (bookId) => {
+export const saveWishlistedBooks = (book) => {
   const storedBooks = getWishlistedBooks();
   const readBooks = getStoredReadBooks();
 
-  const existInReadBooks = readBooks.find((id) => id === bookId);
+  const existInReadBooks = readBooks.find(
+    (readBook) => readBook.bookId === book.bookId,
+  );
   if (existInReadBooks) {
     alert("Already in Read list");
     return;
   }
 
-  const exist = storedBooks.find((id) => id === bookId); // what is wrong
+  const exist = storedBooks.find(
+    (storeBook) => storeBook.bookId === book.bookId,
+  ); // what is wrong
 
   if (exist) {
     alert("Already is in wishlist");
   } else {
-    storedBooks.push(bookId);
+    storedBooks.push(book);
     localStorage.setItem("wishlist-books", JSON.stringify(storedBooks));
   }
 };
